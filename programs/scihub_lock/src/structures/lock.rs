@@ -1,11 +1,10 @@
 use super::UserLock;
 use super::ProjectLock;
-use super::ScihubLock;
 use super::UserLockInfo;
 use anchor_lang::prelude::*;
 use anchor_spl::token::{Token, TokenAccount, Mint, transfer, Transfer};
 use anchor_spl::associated_token::AssociatedToken;
-use super::error::ErrorCode;
+use super::ErrorCode;
 
 #[derive(Accounts)]
 pub struct Lock<'info> {
@@ -13,7 +12,7 @@ pub struct Lock<'info> {
         init,
         payer = user,
         space =  8+core::mem::size_of::<UserLock>(),
-        seeds = [crate::USER_LOCK, user.key().as_ref(), project_lock.key().as_ref(), user_lock_info.index.to_le_bytes().as_ref()],
+        seeds = [crate::USER_LOCK, user.key().as_ref(), token_mint.key().as_ref(), user_lock_info.index.to_le_bytes().as_ref()],
         bump
     )]
     
@@ -29,7 +28,7 @@ pub struct Lock<'info> {
     
     #[account(
         mut,
-        seeds = [crate::PROJECT_LOCK, project_lock.token_mint.key().as_ref()],
+        seeds = [crate::PROJECT_LOCK, token_mint.key().as_ref()],
         bump,
         
         constraint = project_lock.is_active @ ErrorCode::ProjectLockNotActive,

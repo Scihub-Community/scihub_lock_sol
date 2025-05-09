@@ -1,7 +1,7 @@
 use super::ProjectLock;
 use super::ScihubLock;
 use anchor_lang::prelude::*;
-use anchor_spl::token::{Token, TokenAccount, Mint};
+use anchor_spl::token::{ Mint};
 use super::error::ErrorCode;
 
 #[derive(Accounts)]

@@ -3,9 +3,12 @@ use anchor_lang::prelude::*;
 pub mod error;
 pub mod init_scihub_lock;
 pub mod init_project_lock;
+pub mod init_user_lock_info;
 pub mod set_project_lock;
 pub mod lock;
 pub mod unlock;
+
+pub use error::ErrorCode;
 
 //合约全局结构
 #[account]

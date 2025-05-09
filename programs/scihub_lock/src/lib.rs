@@ -10,13 +10,14 @@ use anchor_lang::prelude::*;
 use structures::{
     init_scihub_lock::*,
     init_project_lock::*,
+    init_user_lock_info::*,
     set_project_lock::*,
     lock::*,
     unlock::*,
-    error::ErrorCode::*,
+   
     
 };
-declare_id!("BpVoZPrNT5ez8jPmtHoAVpmQsybKABhNR2oEbQv5S2UP");
+declare_id!("J82RZvfqaQ2uuk8wu1ziiwDtjyxkArmSvMXSfT6LSM7x");
 
 #[program]
 pub mod scihub_lock {
@@ -28,6 +29,12 @@ pub mod scihub_lock {
 
     pub fn init_project_lock(
         ctx: Context<InitProjectLock>,
+    ) -> Result<()> {
+        ctx.accounts.process()
+    }
+
+    pub fn init_user_lock_info(
+        ctx: Context<InitUserLockInfo>,
     ) -> Result<()> {
         ctx.accounts.process()
     }
@@ -49,8 +56,11 @@ pub mod scihub_lock {
 
     pub fn unlock(
         ctx: Context<Unlock>,
+        prev_index: u64
     ) -> Result<()> {
-        ctx.accounts.process()
+        let bump = ctx.bumps.project_lock;
+        ctx.accounts.process(bump,prev_index)
+     
     }
 }
 
