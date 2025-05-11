@@ -78,10 +78,10 @@ impl<'info> Lock<'info> {
         user_lock.end_time = end_time;
 
         // 打印用户锁仓信息
-        msg!("User lock info: {:?}", user_lock);
+        msg!("User lock: {:?}", user_lock);
 
         //打印用户锁仓信息,user_lock_infocannot be formatted using `{:?}
-        msg!("User lock info: {:?}", self.user_lock_info);
+        msg!("Before User lock info: {:?}", self.user_lock_info);
 
         // 更新用户锁仓信息
         self.user_lock_info.amount = self.user_lock_info.amount.checked_add(amount).ok_or(ErrorCode::Overflow)?;

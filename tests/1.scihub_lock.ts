@@ -1,10 +1,10 @@
-import * as anchor from "@coral-xyz/anchor";
-import { Program } from "@coral-xyz/anchor";
-import { ScihubLock } from "../target/types/scihub_lock";
-import { PublicKey, SystemProgram, SYSVAR_CLOCK_PUBKEY } from "@solana/web3.js";
+// import * as anchor from "@coral-xyz/anchor";
+// import { Program } from "@coral-xyz/anchor";
+// import { ScihubLock } from "../target/types/scihub_lock";
+// import { PublicKey, SystemProgram, SYSVAR_CLOCK_PUBKEY } from "@solana/web3.js";
 
 
-//初始化并打印
+// //初始化并打印
 // describe("scihub_lock", () => {
 //   // Configure the client to use the local cluster.
 //   const provider = anchor.AnchorProvider.env();

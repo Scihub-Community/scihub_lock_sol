@@ -69,7 +69,7 @@ impl<'info> Unlock<'info> {
         require!(Clock::get()?.unix_timestamp >= user_lock.end_time, ErrorCode::LockPeriodNotEnded);
 
        
-        let user_lock_info = &self.user_lock_info;
+        // let user_lock_info = &self.user_lock_info;
     
         // 获取锁仓数量
         let amount = user_lock.amount;
@@ -81,7 +81,7 @@ impl<'info> Unlock<'info> {
         // }
 
         // 打印解锁前的信息
-        msg!("Before unlock - User lock info: {:?}", self.user_lock);
+        msg!("Before unlock - User lock : {:?}", self.user_lock);
         msg!("Before unlock - User lock info: {:?}", self.user_lock_info);
         msg!("Before unlock - Project lock info: {:?}", self.project_lock);
 
