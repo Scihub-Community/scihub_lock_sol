@@ -10,7 +10,7 @@ use crate::COMPUTATION_DECIMALS;
 pub struct ClaimReward<'info> {
     #[account(
         mut,
-        seeds = [crate::USER_LOCK_INFO, user.key().as_ref(), token_mint.key().as_ref()],
+        seeds = [crate::USER_LOCK_INFO, user.key().as_ref(), project_lock.key().as_ref()],
         bump
     )]
     pub user_lock_info: Account<'info, UserLockInfo>,

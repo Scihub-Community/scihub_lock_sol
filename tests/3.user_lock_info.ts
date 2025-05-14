@@ -64,13 +64,11 @@
 //         console.log("Token Mint:", userLockInfoAccount.tokenMint.toString());
 //         console.log("Index:", userLockInfoAccount.index.toString());
 //         console.log("Amount:", userLockInfoAccount.amount.toString());
+//         console.log("Reward Debt:", userLockInfoAccount.rewardDebt.toString());
+//         console.log("Accumulated Reward:", userLockInfoAccount.accumulatedReward.toString());
+//         console.log("Received Reward:", userLockInfoAccount.receivedReward.toString());
 
 //     });
-
-
-
- 
-
 
 
 // });

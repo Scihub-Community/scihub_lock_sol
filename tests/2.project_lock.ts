@@ -28,23 +28,24 @@
 //   let userLock: PublicKey;
 
 
-//   // it("Initialize ProjectLock", async () => {
-//   //   // 获取 PDA
-//   //   // [projectLock] = PublicKey.findProgramAddressSync(
-//   //   //   [Buffer.from("project_lock"), tokenMint.toBuffer()],
-//   //   //   program.programId
-//   //   // );
+// //   it("Initialize ProjectLock", async () => {
+// //     // 获取 PDA
+// //     // [projectLock] = PublicKey.findProgramAddressSync(
+// //     //   [Buffer.from("project_lock"), tokenMint.toBuffer()],
+// //     //   program.programId
+// //     // );
 
-//   //   // 初始化 ProjectLock
-//   //   const tx = await program.methods
-//   //     .initProjectLock()
-//   //     .accounts({
-//   //       tokenMint: tokenMint,
-//   //     })
-//   //     .rpc();
+// //     // 初始化 ProjectLock
+// //     const tx = await program.methods
+// //       .initProjectLock()
+// //       .accounts({
+// //         tokenMint: tokenMint,
+// //         rewardTokenMint: tokenMint,
+// //       })
+// //       .rpc();
 
-//   //   console.log("ProjectLock initialized:", tx);
-//   // });
+// //     console.log("ProjectLock initialized:", tx);
+// //   });
 
 
 //   //等待5s
@@ -96,14 +97,17 @@
 //           console.log("✅ ATA for PDA created:", sig);
         
 //         }
-
 //         // 获取并打印 scihubLock 账户内容
 //         const projectLockAccount = await program.account.projectLock.fetch(projectLock);
        
 //         console.log("ProjectLock Account Details:");
 //         console.log("Token Mint: ", projectLockAccount.tokenMint.toBase58());
+//         console.log("Reward Token Mint: ", projectLockAccount.rewardTokenMint.toBase58());
 //         console.log("Total Amount: ", projectLockAccount.totalAmount.toString());
 //         console.log("Is Active: ", projectLockAccount.isActive);
+// console.log("Accumulated Reward Per Share: ", projectLockAccount.accumulatedRewardPerShare.toString());
+//         console.log("Last Reward Timestamp: ", projectLockAccount.lastRewardTimestamp.toString());
+//         console.log("Reward Token Per Sec: ", projectLockAccount.rewardTokenPerSec.toString());
 //     });
 
 

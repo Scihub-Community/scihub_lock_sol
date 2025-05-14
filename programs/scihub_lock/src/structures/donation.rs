@@ -9,6 +9,7 @@ use crate::COMPUTATION_DECIMALS;
 
 
 #[derive(Accounts)]
+#[instruction(amount: u64)]
 pub struct Donation<'info> {
     #[account(
         init_if_needed,
@@ -23,11 +24,11 @@ pub struct Donation<'info> {
         mut,
         seeds = [crate::PROJECT_LOCK, token_mint.key().as_ref()],
         bump,
-
         constraint = project_lock.is_active @ ErrorCode::ProjectLockNotActive,
         constraint = project_lock.reward_token_mint == token_mint.key() @ ErrorCode::TokenMintMismatch
     )]
     pub project_lock: Account<'info, ProjectLock>,
+
 
     pub token_mint: Account<'info, Mint>,
 
@@ -40,8 +41,9 @@ pub struct Donation<'info> {
 
     #[account(
         mut,
-        constraint = lock_token_account.owner == project_lock.key(),
-        constraint = lock_token_account.mint == project_lock.token_mint.key()
+        constraint = lock_token_account.owner == project_lock.key() @ ErrorCode::Unauthorized,
+        constraint = lock_token_account.mint == token_mint.key() @ ErrorCode::TokenMintMismatch,
+        constraint = lock_token_account.mint == project_lock.reward_token_mint @ ErrorCode::TokenMintMismatch
     )]
     pub lock_token_account: Account<'info, TokenAccount>,
 
@@ -110,5 +112,4 @@ impl<'info> Donation<'info> {
 
         Ok(())
     }
-   
 }
