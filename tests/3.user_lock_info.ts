@@ -22,19 +22,18 @@
 //     let userLock: PublicKey;
 
 //   // 初始化
-// //  it("Initialize ProjectLock", async () => {
+//  it("Initialize ProjectLock", async () => {
    
+//     // 初始化 UserLockInfo
+//     const tx = await program.methods
+//       .initUserLockInfo()
+//       .accounts({
+//         tokenMint: tokenMint,
+//       })
+//       .rpc();
 
-// //     // 初始化 UserLockInfo
-// //     const tx = await program.methods
-// //       .initUserLockInfo()
-// //       .accounts({
-// //         tokenMint: tokenMint,
-// //       })
-// //       .rpc();
-
-// //     console.log("ProjectLock initialized:", tx);
-// //   });
+//     console.log("ProjectLock initialized:", tx);
+//   });
 
 //   //等待5s
 //     it("Wait for 5 seconds", async () => {
@@ -69,6 +68,5 @@
 //         console.log("Received Reward:", userLockInfoAccount.receivedReward.toString());
 
 //     });
-
 
 // });
