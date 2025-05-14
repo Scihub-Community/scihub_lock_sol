@@ -14,10 +14,43 @@ use structures::{
     set_project_lock::*,
     lock::*,
     unlock::*,
-   
+    ProjectLock,
+    UserLockInfo,
     
 };
-declare_id!("FCcJEmiLoDBq1TBfraG5SP7KmEivDZubcVr2riLriNKQ");
+declare_id!("J82RZvfqaQ2uuk8wu1ziiwDtjyxkArmSvMXSfT6LSM7x");
+
+
+// pub fn update_reward(current_timestamp: u64, project_lock: &mut ProjectLock) {
+   
+//         // 如果没有份额，跳过此池
+//         if project_lock.total_amount == 0 {
+//             continue;
+//         }
+
+//         // 更新 `accumulated_reward_per_share`
+//         if project_lock.total_shares > 0 {
+//             // 每份奖励计算
+//             let reward_per_share = (income as u128)
+//                 .checked_mul(COMPUTATION_DECIMALS as u128) // 精度调整
+//                 .unwrap_or(0)
+//                 .checked_div(pool.total_shares as u128) // 每份奖励
+//                 .unwrap_or(0) as u64;
+
+//             // 累加每份奖励的累计值
+//             pool.accumulated_reward_per_share = pool
+//                 .accumulated_reward_per_share
+//                 .checked_add(reward_per_share)
+//                 .unwrap_or(pool.accumulated_reward_per_share); // 防止溢出
+//         }
+
+//         // 更新最后奖励时间戳为当前时间戳
+//         pool.last_reward_timestamp = current_timestamp;
+// }
+
+
+
+
 
 #[program]
 pub mod scihub_lock {
@@ -60,7 +93,6 @@ pub mod scihub_lock {
     ) -> Result<()> {
         let bump = ctx.bumps.project_lock;
         ctx.accounts.process(bump,prev_index)
-     
     }
 }
 

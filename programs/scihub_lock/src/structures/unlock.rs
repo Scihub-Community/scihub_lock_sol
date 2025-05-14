@@ -7,6 +7,8 @@ use anchor_spl::token::{Token, TokenAccount, Mint,};
 use anchor_spl::associated_token::AssociatedToken;
 use super::error::ErrorCode;
 
+use crate::COMPUTATION_DECIMALS;
+
 #[derive(Accounts)]
 #[instruction(prev_index: u64)]
 pub struct Unlock<'info> {
@@ -69,7 +71,7 @@ impl<'info> Unlock<'info> {
         require!(Clock::get()?.unix_timestamp >= user_lock.end_time, ErrorCode::LockPeriodNotEnded);
 
        
-        // let user_lock_info = &self.user_lock_info;
+        let user_lock_info = &self.user_lock_info;
     
         // 获取锁仓数量
         let amount = user_lock.amount;
@@ -81,7 +83,7 @@ impl<'info> Unlock<'info> {
         // }
 
         // 打印解锁前的信息
-        msg!("Before unlock - User lock : {:?}", self.user_lock);
+        msg!("Before unlock - User lock info: {:?}", self.user_lock);
         msg!("Before unlock - User lock info: {:?}", self.user_lock_info);
         msg!("Before unlock - Project lock info: {:?}", self.project_lock);
 
@@ -92,6 +94,10 @@ impl<'info> Unlock<'info> {
         // 更新项目锁仓总量
         self.project_lock.total_amount = self.project_lock.total_amount.checked_sub(amount)
             .ok_or(ErrorCode::Overflow)?;
+
+
+            // 存储用户的待领取奖励
+        store_pending_reward(&mut self.project_lock,&mut self.user_lock_info)?;
 
        
         // 生成 PDA 签名种子
@@ -135,4 +141,36 @@ impl<'info> Unlock<'info> {
 
         Ok(())
     }
+}
+
+
+pub fn store_pending_reward(
+    project_lock: &mut ProjectLock,
+    user_lock_info: &mut UserLockInfo,
+) -> Result<()> {
+    
+    
+    // 计算用户在该池子的待领取奖励
+    let pending_reward = (user_lock_info.amount as u128)
+        .checked_mul(project_lock.accumulated_reward_per_share as u128)
+        .and_then(|v| v.checked_div(COMPUTATION_DECIMALS as u128))
+        .and_then(|v| v.checked_sub(user_lock_info.reward_debt as u128))
+        .unwrap_or(0) as u64; // 最终将结果转换回 u64 类型，如果需要
+                              // 如果待领取奖励为 0，直接返回
+    if pending_reward == 0 {
+        return Ok(());
+    }
+
+    // 更新该质押池的累计奖励
+    user_lock_info.accumulated_reward = user_lock_info
+        .accumulated_reward
+        .checked_add(pending_reward)
+        .unwrap_or(user_lock_info.accumulated_reward); // 防止溢出
+
+    // 更新用户的 reward_debt 为最新的池子状态
+    user_lock_info.reward_debt = (user_lock_info.amount as u128)
+        .checked_mul(project_lock.accumulated_reward_per_share as u128)
+        .and_then(|v| v.checked_div(COMPUTATION_DECIMALS as u128))
+        .unwrap_or(user_lock_info.reward_debt as u128) as u64;
+    Ok(())
 }

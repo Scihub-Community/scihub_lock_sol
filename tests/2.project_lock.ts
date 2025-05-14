@@ -19,8 +19,8 @@
 //   const wallet = provider.wallet as anchor.Wallet;
 
 //   // 测试账户
-//   let tokenMint: PublicKey = new PublicKey("7MhHeWwnducQh9r3KD8ruEfgYBBS3NijzEqqs1ybhhCj");
-//   let userTokenAccount: PublicKey = new PublicKey("2dZudLyNcVEYzQ4aWq4XpHF3DiFoBkggKSTKEC1spurY");
+//   let tokenMint: PublicKey = new PublicKey("A22hchYQ2Eiwe7k57ALGmDwN4oJYzn11oadKiuALaNZs");
+//   let userTokenAccount: PublicKey = new PublicKey("8k6aewzBH2Ps96uKp3FqB6o9cfcs8GU3uT3YPPVWEHsc");
 //   let lockTokenAccount: [PublicKey, number];
 //   let scihubLock: PublicKey;
 //   let projectLock: PublicKey;
@@ -28,30 +28,30 @@
 //   let userLock: PublicKey;
 
 
-//   it("Initialize ProjectLock", async () => {
-//     // 获取 PDA
-//     // [projectLock] = PublicKey.findProgramAddressSync(
-//     //   [Buffer.from("project_lock"), tokenMint.toBuffer()],
-//     //   program.programId
-//     // );
+//   // it("Initialize ProjectLock", async () => {
+//   //   // 获取 PDA
+//   //   // [projectLock] = PublicKey.findProgramAddressSync(
+//   //   //   [Buffer.from("project_lock"), tokenMint.toBuffer()],
+//   //   //   program.programId
+//   //   // );
 
-//     // 初始化 ProjectLock
-//     const tx = await program.methods
-//       .initProjectLock()
-//       .accounts({
-//         tokenMint: tokenMint,
-//       })
-//       .rpc();
+//   //   // 初始化 ProjectLock
+//   //   const tx = await program.methods
+//   //     .initProjectLock()
+//   //     .accounts({
+//   //       tokenMint: tokenMint,
+//   //     })
+//   //     .rpc();
 
-//     console.log("ProjectLock initialized:", tx);
-//   });
+//   //   console.log("ProjectLock initialized:", tx);
+//   // });
 
 
 //   //等待5s
 
-//   it("Wait for 10 seconds", async () => {
-//     await new Promise(resolve => setTimeout(resolve, 10000));
-//     console.log("Waited for 10 seconds");
+//   it("Wait for 5 seconds", async () => {
+//     await new Promise(resolve => setTimeout(resolve, 5000));
+//     console.log("Waited for 5 seconds");
 //   });
 
 //   it("print project_lock", async () => {

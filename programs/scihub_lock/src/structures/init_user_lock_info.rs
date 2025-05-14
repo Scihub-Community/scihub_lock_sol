@@ -37,12 +37,20 @@ impl<'info> InitUserLockInfo<'info> {
         user_lock_info.token_mint = self.token_mint.key();
         user_lock_info.index = 0;
         user_lock_info.amount = 0;
+        user_lock_info.accumulated_reward = 0;
+        user_lock_info.reward_debt = 0;
+        user_lock_info.receivedReward = 0;
+
 
         msg!("User lock info initialized");
         msg!("User: {}", user_lock_info.user);
         msg!("Token mint: {}", user_lock_info.token_mint);
         msg!("Index: {}", user_lock_info.index);
         msg!("Amount: {}", user_lock_info.amount);
+        msg!("Accumulated reward: {}", user_lock_info.accumulated_reward);
+        msg!("Reward debt: {}", user_lock_info.reward_debt);
+        msg!("Received reward: {}", user_lock_info.receivedReward);
+        msg!("User lock info initialized successfully!");
 
         Ok(())
     }

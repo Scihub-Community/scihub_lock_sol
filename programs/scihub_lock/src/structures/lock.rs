@@ -5,6 +5,9 @@ use anchor_lang::prelude::*;
 use anchor_spl::token::{Token, TokenAccount, Mint, transfer, Transfer};
 use anchor_spl::associated_token::AssociatedToken;
 use super::ErrorCode;
+use crate::COMPUTATION_DECIMALS;
+// use super::update_reward_debt;
+
 
 #[derive(Accounts)]
 pub struct Lock<'info> {
@@ -78,10 +81,10 @@ impl<'info> Lock<'info> {
         user_lock.end_time = end_time;
 
         // 打印用户锁仓信息
-        msg!("User lock: {:?}", user_lock);
+        msg!("User lock info: {:?}", user_lock);
 
         //打印用户锁仓信息,user_lock_infocannot be formatted using `{:?}
-        msg!("Before User lock info: {:?}", self.user_lock_info);
+        msg!("User lock info: {:?}", self.user_lock_info);
 
         // 更新用户锁仓信息
         self.user_lock_info.amount = self.user_lock_info.amount.checked_add(amount).ok_or(ErrorCode::Overflow)?;
@@ -95,9 +98,13 @@ impl<'info> Lock<'info> {
         msg!("Before Project lock info: {:?}", self.project_lock);
 
         self.project_lock.total_amount = self.project_lock.total_amount.checked_add(amount).ok_or(ErrorCode::Overflow)?;
+       
         // 打印项目锁仓信息
         msg!("After Project lock info: {:?}", self.project_lock);
 
+         // 更新用户奖励债务
+        update_reward_debt(&mut self.project_lock, &mut self.user_lock_info);
+ 
         // 转移代币到锁仓账户
         transfer(
             CpiContext::new(
@@ -114,4 +121,14 @@ impl<'info> Lock<'info> {
         Ok(())
     }
    
+}
+
+pub fn update_reward_debt(
+    project_lock: &mut ProjectLock,
+    user_lock_info: &mut UserLockInfo,
+) {
+    user_lock_info.reward_debt = (user_lock_info.amount as u128)
+        .checked_mul(project_lock.accumulated_reward_per_share as u128)
+        .and_then(|v| v.checked_div(COMPUTATION_DECIMALS as u128))
+        .unwrap_or(0) as u64;   
 }
