@@ -90,8 +90,6 @@ impl<'info> Donation<'info> {
         // 更新最后奖励时间戳为当前时间戳
         self.project_lock.last_reward_timestamp = current_timestamp as u64;
 
-
-
         // 打印捐赠信息
         msg!("Donation info: {:?}", user_donation);
 

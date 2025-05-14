@@ -14,6 +14,8 @@ use structures::{
     set_project_lock::*,
     lock::*,
     unlock::*,
+    donation::*,
+    claim_reward::*,
     ProjectLock,
     UserLockInfo,
     
@@ -93,6 +95,20 @@ pub mod scihub_lock {
     ) -> Result<()> {
         let bump = ctx.bumps.project_lock;
         ctx.accounts.process(bump,prev_index)
+    }
+    
+    pub fn donation(
+        ctx: Context<Donation>,
+        amount: u64
+    ) -> Result<()> {
+        ctx.accounts.process(amount)
+    }
+    
+    pub fn claim_reward(
+        ctx: Context<ClaimReward>,
+    ) -> Result<()> {
+        let bump = ctx.bumps.project_lock;
+        ctx.accounts.process(bump)
     }
 }
 

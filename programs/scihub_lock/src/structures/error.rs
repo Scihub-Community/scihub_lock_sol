@@ -45,5 +45,10 @@ pub enum ErrorCode {
     #[msg("Unlock account not found.")]
     UnlockAccountNotFound,
     
+    #[msg("No rewards to claim.")]
+    NoRewardsToClaim,
+    
+    #[msg("Insufficient reward balance in the project account.")]
+    InsufficientRewardBalance,
 }
 

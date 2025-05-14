@@ -23,6 +23,8 @@ pub struct InitProjectLock<'info> {
     pub scihub_lock: Account<'info, ScihubLock>,
 
     pub token_mint: Account<'info, Mint>,
+    pub reward_token_mint: Account<'info, Mint>,
+    
     #[account(mut)]
     pub owner: Signer<'info>,
     pub system_program: Program<'info, System>,
@@ -36,6 +38,7 @@ impl<'info> InitProjectLock<'info> {
         // 初始化项目锁仓
         let project_lock = &mut self.project_lock;
         project_lock.token_mint = self.token_mint.key();
+        project_lock.reward_token_mint = self.reward_token_mint.key();
         project_lock.total_amount = 0;
         project_lock.is_active = true;
 
@@ -46,6 +49,7 @@ impl<'info> InitProjectLock<'info> {
 
         // 记录初始化信息
         msg!("Project Lock initialized for token: {}", project_lock.token_mint);
+        msg!("Reward Token Mint: {}", project_lock.reward_token_mint);
         msg!("Total Amount: {}", project_lock.total_amount);
         msg!("Is Active: {}", project_lock.is_active);
         msg!("Reward Token Per Sec: {}", project_lock.reward_token_per_sec);

@@ -8,6 +8,7 @@ pub mod set_project_lock;
 pub mod lock;
 pub mod unlock;
 pub mod donation;
+pub mod claim_reward;
 
 
 pub use error::ErrorCode;
