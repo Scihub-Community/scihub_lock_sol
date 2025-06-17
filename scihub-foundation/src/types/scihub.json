@@ -1,0 +1,888 @@
+{
+    "address": "J82RZvfqaQ2uuk8wu1ziiwDtjyxkArmSvMXSfT6LSM7x",
+    "metadata": {
+        "name": "scihub_lock",
+        "version": "0.1.0",
+        "spec": "0.1.0",
+        "description": "Created with Anchor"
+    },
+    "instructions": [
+        {
+            "name": "init_project_lock",
+            "discriminator": [
+                135,
+                179,
+                193,
+                101,
+                116,
+                102,
+                247,
+                99
+            ],
+            "accounts": [
+                {
+                    "name": "project_lock",
+                    "writable": true,
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [
+                                    112,
+                                    114,
+                                    111,
+                                    106,
+                                    101,
+                                    99,
+                                    116,
+                                    95,
+                                    108,
+                                    111,
+                                    99,
+                                    107
+                                ]
+                            },
+                            {
+                                "kind": "account",
+                                "path": "token_mint"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "scihub_lock",
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [
+                                    115,
+                                    99,
+                                    105,
+                                    104,
+                                    117,
+                                    98,
+                                    95,
+                                    108,
+                                    111,
+                                    99,
+                                    107
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "token_mint"
+                },
+                {
+                    "name": "owner",
+                    "writable": true,
+                    "signer": true,
+                    "relations": [
+                        "scihub_lock"
+                    ]
+                },
+                {
+                    "name": "system_program",
+                    "address": "11111111111111111111111111111111"
+                }
+            ],
+            "args": []
+        },
+        {
+            "name": "init_scihub_lock",
+            "discriminator": [
+                114,
+                188,
+                25,
+                93,
+                154,
+                250,
+                149,
+                218
+            ],
+            "accounts": [
+                {
+                    "name": "scihub_lock",
+                    "writable": true,
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [
+                                    115,
+                                    99,
+                                    105,
+                                    104,
+                                    117,
+                                    98,
+                                    95,
+                                    108,
+                                    111,
+                                    99,
+                                    107
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "owner",
+                    "writable": true,
+                    "signer": true
+                },
+                {
+                    "name": "system_program",
+                    "address": "11111111111111111111111111111111"
+                }
+            ],
+            "args": []
+        },
+        {
+            "name": "init_user_lock_info",
+            "discriminator": [
+                211,
+                136,
+                253,
+                166,
+                103,
+                79,
+                217,
+                54
+            ],
+            "accounts": [
+                {
+                    "name": "user_lock_info",
+                    "writable": true,
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [
+                                    117,
+                                    115,
+                                    101,
+                                    114,
+                                    95,
+                                    108,
+                                    111,
+                                    99,
+                                    107,
+                                    95,
+                                    105,
+                                    110,
+                                    102,
+                                    111
+                                ]
+                            },
+                            {
+                                "kind": "account",
+                                "path": "owner"
+                            },
+                            {
+                                "kind": "account",
+                                "path": "project_lock"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "project_lock",
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [
+                                    112,
+                                    114,
+                                    111,
+                                    106,
+                                    101,
+                                    99,
+                                    116,
+                                    95,
+                                    108,
+                                    111,
+                                    99,
+                                    107
+                                ]
+                            },
+                            {
+                                "kind": "account",
+                                "path": "token_mint"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "token_mint"
+                },
+                {
+                    "name": "owner",
+                    "writable": true,
+                    "signer": true
+                },
+                {
+                    "name": "system_program",
+                    "address": "11111111111111111111111111111111"
+                }
+            ],
+            "args": []
+        },
+        {
+            "name": "lock",
+            "discriminator": [
+                21,
+                19,
+                208,
+                43,
+                237,
+                62,
+                255,
+                87
+            ],
+            "accounts": [
+                {
+                    "name": "user_lock",
+                    "writable": true,
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [
+                                    117,
+                                    115,
+                                    101,
+                                    114,
+                                    95,
+                                    108,
+                                    111,
+                                    99,
+                                    107
+                                ]
+                            },
+                            {
+                                "kind": "account",
+                                "path": "user"
+                            },
+                            {
+                                "kind": "account",
+                                "path": "token_mint"
+                            },
+                            {
+                                "kind": "account",
+                                "path": "user_lock_info.index",
+                                "account": "UserLockInfo"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "user_lock_info",
+                    "writable": true,
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [
+                                    117,
+                                    115,
+                                    101,
+                                    114,
+                                    95,
+                                    108,
+                                    111,
+                                    99,
+                                    107,
+                                    95,
+                                    105,
+                                    110,
+                                    102,
+                                    111
+                                ]
+                            },
+                            {
+                                "kind": "account",
+                                "path": "user"
+                            },
+                            {
+                                "kind": "account",
+                                "path": "project_lock"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "project_lock",
+                    "writable": true,
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [
+                                    112,
+                                    114,
+                                    111,
+                                    106,
+                                    101,
+                                    99,
+                                    116,
+                                    95,
+                                    108,
+                                    111,
+                                    99,
+                                    107
+                                ]
+                            },
+                            {
+                                "kind": "account",
+                                "path": "token_mint"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "token_mint"
+                },
+                {
+                    "name": "user_token_account",
+                    "writable": true
+                },
+                {
+                    "name": "lock_token_account",
+                    "writable": true
+                },
+                {
+                    "name": "user",
+                    "writable": true,
+                    "signer": true
+                },
+                {
+                    "name": "system_program",
+                    "address": "11111111111111111111111111111111"
+                },
+                {
+                    "name": "token_program",
+                    "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+                },
+                {
+                    "name": "associated_token_program",
+                    "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+                }
+            ],
+            "args": [
+                {
+                    "name": "amount",
+                    "type": "u64"
+                },
+                {
+                    "name": "end_time",
+                    "type": "i64"
+                }
+            ]
+        },
+        {
+            "name": "set_project_lock",
+            "discriminator": [
+                43,
+                67,
+                131,
+                186,
+                25,
+                218,
+                113,
+                110
+            ],
+            "accounts": [
+                {
+                    "name": "project_lock",
+                    "writable": true,
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [
+                                    112,
+                                    114,
+                                    111,
+                                    106,
+                                    101,
+                                    99,
+                                    116,
+                                    95,
+                                    108,
+                                    111,
+                                    99,
+                                    107
+                                ]
+                            },
+                            {
+                                "kind": "account",
+                                "path": "token_mint"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "scihub_lock",
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [
+                                    115,
+                                    99,
+                                    105,
+                                    104,
+                                    117,
+                                    98,
+                                    95,
+                                    108,
+                                    111,
+                                    99,
+                                    107
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "token_mint"
+                },
+                {
+                    "name": "owner",
+                    "writable": true,
+                    "signer": true,
+                    "relations": [
+                        "scihub_lock"
+                    ]
+                },
+                {
+                    "name": "system_program",
+                    "address": "11111111111111111111111111111111"
+                }
+            ],
+            "args": [
+                {
+                    "name": "is_active",
+                    "type": "bool"
+                }
+            ]
+        },
+        {
+            "name": "unlock",
+            "discriminator": [
+                101,
+                155,
+                40,
+                21,
+                158,
+                189,
+                56,
+                203
+            ],
+            "accounts": [
+                {
+                    "name": "user_lock",
+                    "writable": true,
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [
+                                    117,
+                                    115,
+                                    101,
+                                    114,
+                                    95,
+                                    108,
+                                    111,
+                                    99,
+                                    107
+                                ]
+                            },
+                            {
+                                "kind": "account",
+                                "path": "user"
+                            },
+                            {
+                                "kind": "account",
+                                "path": "token_mint"
+                            },
+                            {
+                                "kind": "arg",
+                                "path": "prev_index"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "user_lock_info",
+                    "writable": true,
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [
+                                    117,
+                                    115,
+                                    101,
+                                    114,
+                                    95,
+                                    108,
+                                    111,
+                                    99,
+                                    107,
+                                    95,
+                                    105,
+                                    110,
+                                    102,
+                                    111
+                                ]
+                            },
+                            {
+                                "kind": "account",
+                                "path": "user"
+                            },
+                            {
+                                "kind": "account",
+                                "path": "project_lock"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "project_lock",
+                    "writable": true,
+                    "pda": {
+                        "seeds": [
+                            {
+                                "kind": "const",
+                                "value": [
+                                    112,
+                                    114,
+                                    111,
+                                    106,
+                                    101,
+                                    99,
+                                    116,
+                                    95,
+                                    108,
+                                    111,
+                                    99,
+                                    107
+                                ]
+                            },
+                            {
+                                "kind": "account",
+                                "path": "token_mint"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "token_mint"
+                },
+                {
+                    "name": "user_token_account",
+                    "writable": true
+                },
+                {
+                    "name": "lock_token_account",
+                    "writable": true
+                },
+                {
+                    "name": "user",
+                    "writable": true,
+                    "signer": true
+                },
+                {
+                    "name": "system_program",
+                    "address": "11111111111111111111111111111111"
+                },
+                {
+                    "name": "token_program",
+                    "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+                },
+                {
+                    "name": "associated_token_program",
+                    "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+                }
+            ],
+            "args": [
+                {
+                    "name": "prev_index",
+                    "type": "u64"
+                }
+            ]
+        }
+    ],
+    "accounts": [
+        {
+            "name": "ProjectLock",
+            "discriminator": [
+                144,
+                96,
+                93,
+                6,
+                14,
+                88,
+                172,
+                55
+            ]
+        },
+        {
+            "name": "ScihubLock",
+            "discriminator": [
+                50,
+                90,
+                226,
+                18,
+                151,
+                6,
+                240,
+                7
+            ]
+        },
+        {
+            "name": "UserLock",
+            "discriminator": [
+                107,
+                42,
+                69,
+                173,
+                232,
+                188,
+                205,
+                98
+            ]
+        },
+        {
+            "name": "UserLockInfo",
+            "discriminator": [
+                125,
+                0,
+                43,
+                190,
+                172,
+                84,
+                106,
+                88
+            ]
+        }
+    ],
+    "errors": [
+        {
+            "code": 6000,
+            "name": "Unauthorized",
+            "msg": "Unauthorized."
+        },
+        {
+            "code": 6001,
+            "name": "InvalidStartTime",
+            "msg": "Invalid start time."
+        },
+        {
+            "code": 6002,
+            "name": "InvalidEndTime",
+            "msg": "Invalid end time."
+        },
+        {
+            "code": 6003,
+            "name": "InvalidAmount",
+            "msg": "Invalid amount."
+        },
+        {
+            "code": 6004,
+            "name": "ProjectLockNotActive",
+            "msg": "Project lock is not active."
+        },
+        {
+            "code": 6005,
+            "name": "ProjectLockEnded",
+            "msg": "Project lock has ended."
+        },
+        {
+            "code": 6006,
+            "name": "InsufficientBalance",
+            "msg": "Insufficient balance."
+        },
+        {
+            "code": 6007,
+            "name": "TokenMintMismatch",
+            "msg": "Token mint mismatch."
+        },
+        {
+            "code": 6008,
+            "name": "Overflow",
+            "msg": "Overflow occurred."
+        },
+        {
+            "code": 6009,
+            "name": "LockPeriodNotEnded",
+            "msg": "Lock period not ended."
+        },
+        {
+            "code": 6010,
+            "name": "NoTokensToUnlock",
+            "msg": "No tokens to unlock."
+        },
+        {
+            "code": 6011,
+            "name": "LockAccountNotFound",
+            "msg": "Lock account not found."
+        },
+        {
+            "code": 6012,
+            "name": "UnlockAccountNotFound",
+            "msg": "Unlock account not found."
+        }
+    ],
+    "types": [
+        {
+            "name": "ProjectLock",
+            "type": {
+                "kind": "struct",
+                "fields": [
+                    {
+                        "name": "token_mint",
+                        "type": "pubkey"
+                    },
+                    {
+                        "name": "total_amount",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "is_active",
+                        "type": "bool"
+                    },
+                    {
+                        "name": "reward_token_mint",
+                        "type": "pubkey"
+                    },
+                    {
+                        "name": "reward_token_per_sec",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "accumulated_reward_per_share",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "last_reward_timestamp",
+                        "type": "u64"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "ScihubLock",
+            "type": {
+                "kind": "struct",
+                "fields": [
+                    {
+                        "name": "owner",
+                        "type": "pubkey"
+                    },
+                    {
+                        "name": "scihub_mint",
+                        "type": "pubkey"
+                    },
+                    {
+                        "name": "project_name",
+                        "type": "string"
+                    },
+                    {
+                        "name": "project_description",
+                        "type": "string"
+                    },
+                    {
+                        "name": "project_website",
+                        "type": "string"
+                    },
+                    {
+                        "name": "project_logo",
+                        "type": "string"
+                    },
+                    {
+                        "name": "project_telegram",
+                        "type": "string"
+                    },
+                    {
+                        "name": "project_twitter",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "UserLock",
+            "type": {
+                "kind": "struct",
+                "fields": [
+                    {
+                        "name": "index",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "user",
+                        "type": "pubkey"
+                    },
+                    {
+                        "name": "token_mint",
+                        "type": "pubkey"
+                    },
+                    {
+                        "name": "amount",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "start_time",
+                        "type": "i64"
+                    },
+                    {
+                        "name": "end_time",
+                        "type": "i64"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "UserLockInfo",
+            "type": {
+                "kind": "struct",
+                "fields": [
+                    {
+                        "name": "user",
+                        "type": "pubkey"
+                    },
+                    {
+                        "name": "token_mint",
+                        "type": "pubkey"
+                    },
+                    {
+                        "name": "index",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "amount",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "reward_debt",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "accumulated_reward",
+                        "type": "u64"
+                    },
+                    {
+                        "name": "receivedReward",
+                        "type": "u64"
+                    }
+                ]
+            }
+        }
+    ]
+}
